@@ -6,6 +6,9 @@ header("content-type: text/xml");
 <Response>
     <Message>
         This is a response.
-        <?php echo json_encode($_POST); ?>
+        <?php
+        echo "Message Received:".$_POST['Body'];
+        echo "From: ".$_POST['From'];
+        ?>
     </Message>
 </Response>
