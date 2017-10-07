@@ -3,9 +3,10 @@ ADMIN
 CREATE TABLE `admin` (
   `AID` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `adminname` varchar(45) DEFAULT NULL,
   `adminemail` varchar(45) DEFAULT NULL,
+  `salt` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`AID`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
