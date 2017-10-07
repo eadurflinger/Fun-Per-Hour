@@ -6,15 +6,10 @@ if (!array_key_exists('HTTP_ORIGIN', $_SERVER)) {
 
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-
 $server = $url["host"];
 $dbname = substr($url["path"], 1);
 $sqluser = $url["user"];
 $sqlpass = $url["pass"];
-
-// $dbname = 'timecardapp_v3';
-// $sqluser = 'web_user';
-// $sqlpass = 'BFWKsYv2PnywhDms' ;
 
 $mysqli = new mysqli($server, $sqluser, $sqlpass, $dbname);
 if($mysqli->connect_error) {
@@ -23,11 +18,13 @@ if($mysqli->connect_error) {
     $mysqli->connect_error)));
 }
 
+date_default_timezone_set('UTC'); // Make sure we're on the same page abt time. I think we gotta do a time conversion somewhere on client side so it corresponds to client's time zone...
+
 try {
     $API = new mAPI($_REQUEST['request'], $_SERVER['HTTP_ORIGIN'],$mysqli);
     print $API->runAPI();
 } catch (Exception $e) {
-    //header('HTTP/1.1' +500)
+
     print json_encode(Array('error' => $e->getMessage()));
 }
 
