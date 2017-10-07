@@ -35,10 +35,17 @@ abstract class API {
 
     if(array_key_exists('CONTENT_TYPE', $_SERVER)) $this->content_type = $_SERVER['CONTENT_TYPE'];
     else {throw new Exception('No Content Type Provided');}
-    if() {
-      if ($this->method==='GET') {$this->input = $this->_sanitize($_GET);}
-      else if(strpos($this->content_type, 'application/json') !== false) {
+      if(strpos($this->content_type, 'application/json') !== false) {
           $this->input = $this->_sanitize(json_decode(file_get_contents('php://input'),true));
+      } else if(strpos($this->content_type, 'application/x-www-form-urlencoded') !== false) {
+          switch($method) {
+              case "GET":
+                  $this->input = $this->_sanitize($_GET);
+                  break;
+              case "POST":
+                  $this->input = $this->_sanitize($_POST);
+                  break;
+          }
       } else throw new Exception("Unexpected Content Type");
 
   }
