@@ -10,7 +10,7 @@ header("content-type: text/xml");
         echo "Message Received:".$_POST['Body'];
         echo "From: ".$_POST['From'];
 
-
+        echo $_SERVER['CONTENT_TYPE'];
         ?>
     </Message>
 </Response>
