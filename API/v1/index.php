@@ -8,9 +8,9 @@ $token = "d8419de55b30f7d7acb918a07973f0b8";
 $client = new Client($sid, $token);
 
 $client->messages->create([
-    'to' => '+13305037056',
-    'from' => '+17243085071',
-    'body' => '<<MESSAGE>>'
+    'To' => '+13305037056',
+    'From' => '+17243085071',
+    'Body' => '<<MESSAGE>>'
 ]);
 
 
