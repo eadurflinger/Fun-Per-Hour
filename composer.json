@@ -1,7 +1,7 @@
 {
     "require" : {
-        "twilio/sdk": "*"
-    }
+        "twilio/sdk" : "5.*"
+    },
 
     "require-dev" : {
         "heroku/heroku-buildpack-php": "*"
