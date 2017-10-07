@@ -1,17 +1,34 @@
 <?php
+require_once 'api.php';
+if (!array_key_exists('HTTP_ORIGIN', $_SERVER)) {
+    $_SERVER['HTTP_ORIGIN'] = $_SERVER['SERVER_NAME'];
+}
 
-require "../../vendor/autoload.php";
-use Twilio\Rest\Client;
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-$sid = "AC11e0c32f223e9f9424f5de8664c56d3b";
-$token = "d8419de55b30f7d7acb918a07973f0b8";
-$client = new Client($sid, $token);
 
-$client->messages->create(
-'+13305037056', [
-    'from' => '+17243085071',
-    'body' => '<<MESSAGE>>'
-]);
+$server = $url["host"];
+$dbname = substr($url["path"], 1);
+$sqluser = $url["user"];
+$sqlpass = $url["pass"];
 
+// $dbname = 'timecardapp_v3';
+// $sqluser = 'web_user';
+// $sqlpass = 'BFWKsYv2PnywhDms' ;
+
+$mysqli = new mysqli($server, $sqluser, $sqlpass, $dbname);
+if($mysqli->connect_error) {
+  die(json_encode(Array('error' => 'MySQL Connect Error ('.
+    $mysqli->connect_errno.') '.
+    $mysqli->connect_error)));
+}
+
+try {
+    $API = new mAPI($_REQUEST['request'], $_SERVER['HTTP_ORIGIN'],$mysqli);
+    print $API->runAPI();
+} catch (Exception $e) {
+    //header('HTTP/1.1' +500)
+    print json_encode(Array('error' => $e->getMessage()));
+}
 
 ?>
