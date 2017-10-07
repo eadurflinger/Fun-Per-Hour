@@ -10,7 +10,7 @@ header("content-type: text/xml");
         echo "Message Received:".$_POST['Body'];
         echo "From: ".$_POST['From'];
 
-        echo json_encode(getallheaders());
+        echo json_encode($_SERVER);
         ?>
     </Message>
 </Response>
