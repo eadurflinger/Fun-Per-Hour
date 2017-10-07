@@ -15,6 +15,7 @@ REGISTRATION
 CREATE TABLE `registration` (
   `attendeepno` varchar(15) NOT NULL,
   `EID` int(11) NOT NULL,
+  `updatetime` time(6) NOT NULL,
   PRIMARY KEY (`attendeepno`,`EID`),
   KEY `EID_idx` (`EID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
