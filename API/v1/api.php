@@ -97,24 +97,24 @@ class mAPI extends API {
     if (empty($this->data['where'])) $this->data['where'] = Array();
     if (empty($this->data['orderBy'])) $this->data['orderBy'] = Array();
     if (empty($this->data['limit'])) $this->data['limit'] = Array();
-    $rawSet = array_merge(['u_id' => $this->user->uid],$this->data['set']);
-    $rawWhere = array_merge(['u_id' => $this->user->uid],$this->data['where']);
+    $rawSet = array_merge(['AID' => $this->user->uid],$this->data['set']);
+    $rawWhere = array_merge(['AID' => $this->user->uid],$this->data['where']);
     $sql = $this->makeQuery($this->data['table'], $rawSet, $rawWhere, $this->data['orderBy'],$this->data['limit']);
     $out = $this->_sendQuery($sql);
     return $this->buildResponse($out);
   }
   protected function login() {
     if($this->method != 'GET') {$this->status=404; return ['error'=>'Wrong Method'];}
-    //TODO: salt and hash password
+    //TODO: salt and hash passwordword
     $whereUser = Array();
-    $whereUser['usr'] = $this->data['where']['usr'];
-    $sql = $this->makeQuery('users', null, $whereUser);
+    $whereUser['username'] = $this->data['where']['username'];
+    $sql = $this->makeQuery('admin', null, $whereUser);
     if (!($res = $this->_sendQuery($sql))) throw new Exception("User Doesn't Exist");//might be a syntax error
-    $this->data['where']['pass'] .= $res[0]['salt'];
-    $this->data['where']['pass'] = hash('sha256', $this->data['where']['pass']);
-    $sql = $this->makeQuery('users', null, $this->data['where'], null);
+    $this->data['where']['password'] .= $res[0]['salt'];
+    $this->data['where']['password'] = hash('sha256', $this->data['where']['password']);
+    $sql = $this->makeQuery('admin', null, $this->data['where'], null);
     if($res = $this->_sendQuery($sql)) {
-      $this->token->uid = $res[0]['u_ID'];
+      $this->token->uid = $res[0]['AID'];
       return $this->buildResponse($res[0]);
     }
     $this->status = 401;
@@ -122,15 +122,15 @@ class mAPI extends API {
   }
   protected function newUser() {
     if($this->method != 'POST') {$this->status=404; return 'Wrong Method'; die();}
-    $sql = $this->makeQuery('users', null , ['usr'=>$this->data['set']['usr']]);
+    $sql = $this->makeQuery('admin', null , ['username'=>$this->data['set']['username']]);
     if($res = $this->_sendQuery($sql)) throw new Exception("User Already Exists");
     // SALT & HASH GENERATOR
     $bytes = random_bytes('10');
     $salt = bin2hex($bytes);
-    $this->data['set']['pass'] .= $salt;
-    $this->data['set']['pass'] = hash('sha256', $this->data['set']['pass']);
+    $this->data['set']['password'] .= $salt;
+    $this->data['set']['password'] = hash('sha256', $this->data['set']['password']);
     $saltedSet = array_merge(['salt' => $salt],$this->data['set']);
-    $sql = $this->makeQuery('users', $saltedSet, null, null);
+    $sql = $this->makeQuery('admin', $saltedSet, null, null);
     return $this->buildResponse($this->_sendQuery($sql));
   }
   protected function forgot() {
