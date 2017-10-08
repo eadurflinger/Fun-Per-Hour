@@ -1,6 +1,28 @@
 <html>
 	<head>
 		<title>Create a New Event</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive product landing page.">
+    <title>Landing Page – Layout Examples – Pure</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <!--<![endif]-->
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Syncopate:700" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
 	</head>
 
 <body>
@@ -26,4 +48,128 @@
 <table>
 
 </body>
+    <style>
+    body {
+        background-color: rgba(135, 244, 244, 0.99);
+        background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+        background-size: 400% 400%;
+        -webkit-animation: Gradient 15s ease infinite;
+        -moz-animation: Gradient 15s ease infinite;
+        animation: Gradient 15s ease infinite;
+        color: #ffffff;
+    }
+    @-webkit-keyframes Gradient {
+        0% {
+            background-position: 0% 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0% 50%
+        }
+    }
+
+    @-moz-keyframes Gradient {
+        0% {
+            background-position: 0% 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0% 50%
+        }
+    }
+
+    @keyframes Gradient {
+        0% {
+            background-position: 0% 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0% 50%
+        }
+    }
+
+    .center{
+        text-align: center;
+    }
+
+    .button{
+        background-color: rgba(67, 67, 67, 0.15);
+        border-radius: 8px;
+        color: white;
+        padding: 15px 32px;
+        margin: 3px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+    }
+
+    h1{
+        margin-top: 100px;
+        margin-bottom: 10px;
+        font-family: 'Syncopate', sans-serif;
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    h2{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 30px;
+    }
+
+    form{
+        font-size: 20px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    input[type=text], input[type=password] {
+        width: 250px;
+        padding: 3px 3px;
+        margin: 8px 0;
+        border-radius: 8px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        color: #919191
+        }
+    @media screen and (min-width: 35.5em){
+       h1{
+            font-size: 75px;
+        }
+        h2{
+            font-size: 30px;
+        }
+        .button{
+            font-size: 20px;
+        }
+    }
+    @media screen and (min-width: 48em){
+       h1{
+            font-size: 100px;
+        }
+        h2{
+            font-size: 35px;
+        }
+        .button{
+            font-size: 20px;
+        }
+    }
+    @media screen and (min-width: 64em){
+        h1{
+            font-size: 150px;
+        }
+        h2{
+            font-size: 60px;
+        }
+        .button{
+            font-size: 30px;
+        }
+    }
+</style>
+
 </html>
