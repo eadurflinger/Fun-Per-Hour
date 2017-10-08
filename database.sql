@@ -24,7 +24,7 @@ ATTENDEE
 
 CREATE TABLE `attendee` (
   `EID` int(11) DEFAULT NULL,
-  `entreeId` int(11) NOT NULL DEFAULT '1',
+  `entreeId` int(11) NOT NULL AUTO_INCREMENT,
   `attendeepno` varchar(15) NOT NULL,
   `updateTime` int(11) DEFAULT NULL,
   PRIMARY KEY (`entreeId`),
@@ -51,9 +51,9 @@ CREATE TABLE `event` (
 FUNLEVEL
 
 CREATE TABLE `funlevel` (
-  `atendeepno` varchar(15) NOT NULL,
+  `attendeepno` varchar(15) NOT NULL,
   `funlevel` int(11) NOT NULL,
   `time` time(6) DEFAULT NULL,
-  PRIMARY KEY (`atendeepno`,`funlevel`),
-  CONSTRAINT `atendeepno` FOREIGN KEY (`atendeepno`) REFERENCES `attendee` (`attendeepno`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`attendeepno`,`funlevel`),
+  CONSTRAINT `atendeepno` FOREIGN KEY (`attendeepno`) REFERENCES `attendee` (`attendeepno`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
