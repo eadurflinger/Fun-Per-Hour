@@ -64,8 +64,8 @@ $( document ).ready(function() {
 
     $('#login_button').click(function(e){
         e.preventDefault();
-        let usr = $('#username').value;
-        let pass = $('#password').value;
+        let usr = $('#username').val();
+        let pass = $('#password').val();
         let dat = {
             data: {
                 where: {
