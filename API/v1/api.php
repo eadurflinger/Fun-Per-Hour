@@ -5,25 +5,25 @@
 require_once 'API.class.php';
 require_once 'user.class.php';
 require_once 'token.class.php';
+
 class mAPI extends API {
   protected $user,$mysqli,$data,$token;
   public function __construct($request, $origin, $mysqli) {
     parent::__construct($request);
-    if (!is_a($mysqli, 'mysqli')) throw new Exception('Invalid MySQL Object');
     $this->mysqli = $mysqli;
     // TODO: validate API_key here
+
     if(!$this->input) throw new Exception("No Input!");
-       if(!array_key_exists('token', $this->input)) {
+    if(!array_key_exists('token', $this->input)) {
       $this->user = new User();
       $this->token = new Token();
-    } else if(array_key_exists('token', $this->input)&&array_key_exists('newRand', $this->input)&&array_key_exists('randKey', $this->input)){
-    } else if (array_key_exists ('token', $this->input)){
-      $this->token = new Token($this->input['randKey'], $this->input['token']);
+    } else if (array_key_exists('token', $this->input)){
+      $this->token = new Token($this->input['token']);
       $this->user = new User($this->token->uid);
     }
     $this->data = $this->input['data'];
-
   }
+
   protected function buildResponse($res) {
     $out = ['sqlres' => $res];
     $out['token'] = $this->token->genToken();
