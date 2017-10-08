@@ -75,17 +75,14 @@ $( document ).ready(function() {
             },
         };
 
+        console.log(JSON.stringify(dat));
+
         $.ajax({
           type: 'GET',
           url: 'http://fun-per-hour.herokuapp.com/API/v1/login',
           contentType: 'application/x-www-form-urlencoded',
           dataType: 'json',
-          data: {
-                where: {
-                    'username' : usr,
-                    'password' : pass,
-                }
-            },
+          data: dat,
           success: (result,status,xhr) => {
             console.log(result);
             console.log(`${JSON.stringify(xhr)} ${status}`);
