@@ -1,0 +1,88 @@
+
+<html>
+	<head>
+		<title>Register Here...</title>
+	</head>
+
+<body>
+	<h1 align="center">Register Here...</h1>
+
+	<!-- <form align="center">
+
+	<label>Event Name:</label>
+   	<input id="eventName" type="text" placeholder="name of your event" required/><br><br>
+
+	<lable>Event Time:</lable>
+	<input type="time" placeholder="hh:mm"><br><br>
+
+	<lable>Event Date:</lable>
+	<input type="date"><br><br>
+
+	<input type="submit" value="Submit"/>
+
+	</form> -->
+
+<table align="center">
+	<tr>
+	     	<td>Phone Number:</td>
+		<td><input type="tel" name="usrtel"></td>
+	</tr>
+	<tr>
+		<td>Current Time:</td>
+		<td>
+		<script type="text/javascript">
+/**
+Script Title: Update Textbox with time with an interval
+Script Author: Raymond Angana as first seen on devppl.com/forum [username = rangana]
+Date Created: 3/4/09
+This notice must stay intact for legal use
+*/
+var ray = {
+el:'', pause:0,
+
+updateText:function (el,pause) {
+this.el=this.el==''?el:this.el;
+this.pause=this.pause==0?pause:this.pause;
+this.getID(this.el).value = this.timeNow();
+setTimeout(function () {
+ray.updateText();
+},this.pause*(6000));
+},
+
+getID:function (el) {
+return document.getElementById(el);
+},
+
+timeNow:function () {
+var date = new Date();
+var hour = date.getHours();
+var min = date.getMinutes();
+var sec = date.getSeconds();
+return hour+':'+min+' '+sec;
+}
+}
+</script>
+<input type="textbox" id="mytextbox" disabled="disabled">
+<script type="text/javascript">
+/**
+Script Title: Update Textbox with time with an interval
+Script Author: Raymond Angana as first seen on devppl.com/forum [username = rangana]
+Date Created: 3/4/09
+This notice must stay intact for legal use
+*/
+ray.updateText('mytextbox',10); // Pass the ID of the textbox and the time update interval (computed per minute. 10 means 10 minutes
+</script>
+		</td>
+	</tr>
+	<tr>
+		<td>Event ID:</td>
+		<td><input type="text" ></td>
+	</tr>
+	<tr>
+		<td>	</td>
+		<td><input type="submit" value="Submit"/></td>
+	</tr>
+    </table>
+
+</body>
+</html>
