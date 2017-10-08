@@ -1,5 +1,5 @@
 <?php
-header("content-type: text/xml");
+header("Content-Type: text/xml");
 
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
@@ -29,16 +29,15 @@ $out = "";
 if(((int)$input)>0 && ((int)$input)<=10) {
     $sql = "INSERT INTO `attendee` (attendeepno,funlevel,submitTime) VALUES (". $from ."". $input ."". $time .")";
     if(!$mysqli->query($sql)) {
-        $out = "MySQL Error:":$mysqli->error;
+        $out = "MySQL Error:".$mysqli->error;
     } else {
         $sql = "UPDATE `registration` SET updatetime=".$updatetime.", submittime=".$time." WHERE attendeepno==".$from; //FIXME: change names of columns
     }
-} else if(mysqli->query('select * from `events` where `EID`=='.$input)) {
-    mysqli->query('');
+} else if($mysqli->query('select * from `events` where `EID`=='.$input)) {
+    $mysqli->query('');
 } else $out = "Unknown EID";
 
 ?>
-
 <Response>
     <Message>
         This is a response.
