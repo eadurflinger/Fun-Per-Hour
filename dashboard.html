@@ -30,9 +30,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+
 </head>
 
 <body>
+    <!--first division of webpage-->
     <div class="container text-center">
   <h1>Admin Dashboard</h1>
         <p><b>Name of Admin: </b></p>
@@ -40,52 +43,92 @@
       </p>
     </div>
 
+
+<!--second division of webpage-->
 <div class="jumbotron">
   <div class="row">
     <div class="container">
-        <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Event name</th>
-            <th>No. of Attendies</th>
-            <th>No. of Ratings</th>
-            <th>Visual Data </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>event1</td>
-            <td>10</td>
-            <td>8</td>
-            <td><a href="">visualdata</a></td>
-          </tr>
-            <tr>
-            <td>event2</td>
-            <td>20</td>
-            <td>18</td>
-            <td><a href="">visualdata</a></td>
-          </tr>
-
-          <tr>
-            <td>event3</td>
-            <td>50</td>
-            <td>32</td>
-            <td><a href="">visualdata</a></td>
-          </tr>
-        </tbody>
-        </table>
-    </div>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+          <th>Event name</th>
+        <th>Average Rate</th>
+        <th>Visual Data </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>event1</td>
+        <td>8</td>
+        <td><a href="">visualdata</a></td>
+      </tr>
+        <tr>
+        <td>event2</td>
+        <td>5</td>
+        <td><a href="">visualdata</a></td>
+      </tr>
+      <tr>
+        <td>event3</td>
+        <td>3</td>
+        <td><a href="">visualdata</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
 </div>
 
+<!--third div of webpage-->
+
+<div id="chart_div" width=100% height=600px>
+</div>
+
+
 </body>
+<!--script for bar graphs-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawTitleSubtitle);
 
-<style>
-    h1{
-        color: #ffffff
-    }
-    p{
-        color: #ffffff
-    }
+        function drawTitleSubtitle() {
+            var data = new google.visualization.DataTable();
+        data.addColumn('timeofday', 'Time of Day');
+        data.addColumn('number', 'Fun Level');
 
-</style>
+        data.addRows([
+            [{v: [8, 0, 0], f: '8 am'}, 1],
+            [{v: [9, 0, 0], f: '9 am'}, 2],
+            [{v: [10, 0, 0], f:'10 am'}, 3],
+            [{v: [11, 0, 0], f: '11 am'}, 4],
+            [{v: [12, 0, 0], f: '12 pm'}, 5],
+            [{v: [13, 0, 0], f: '1 pm'}, 6],
+            [{v: [14, 0, 0], f: '2 pm'}, 7],
+            [{v: [15, 0, 0], f: '3 pm'}, 8],
+            [{v: [16, 0, 0], f: '4 pm'}, 9],
+            [{v: [17, 0, 0], f: '5 pm'}, 10],
+        ]);
+
+        var options = {
+        chart: {
+          title: 'Motivation and Energy Level Throughout the Day',
+          subtitle: 'Based on a scale of 1 to 10'
+        },
+        hAxis: {
+          title: 'Time of Day',
+          format: 'h:mm a',
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          }
+        },
+            vAxis: {
+          title: 'Rating (scale of 1-10)'
+                    }
+            };
+
+            var chart = new google.visualization.ColumnChart(
+                document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+</script>
