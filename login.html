@@ -22,8 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Syncopate:700" rel="stylesheet">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-    <script src="/script.js"></script>
+
 </head>
 
 <body>
@@ -39,12 +38,12 @@
 
         <form>
             <div class="pure-u-1-1 center">
-                <label for="fname">Username</label>
-                    <input type="text" id="fname" name="fname">
+                <label for="username">Username</label>
+                    <input type="text" id="username" name="username">
             </div>
             <div class="pure-u-1-1 center">
-                <label for="lname">Password</label>
-                    <input type="text" id="lname" name="lname">
+                <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
             </div>
         </form>
 
@@ -56,6 +55,47 @@
 
     </div>
 </body>
+
+<script>
+'use strict';
+
+
+$( document ).ready(function() {
+
+    $('#login_button').click(function(e){
+        e.preventDefault();
+        let usr = $('#username').value;
+        let pass = $('#password').value;
+        let dat = {
+            data: {
+                where: {
+                    'username' : usr,
+                    'password' : pass,
+                }
+            },
+        };
+
+        $.ajax({
+          type: 'GET',
+          url: 'http://fun-per-hour.herokuapp.com/API/v1/login',
+          contentType: 'application/x-www-form-urlencoded',
+          dataType: 'json',
+          data: dat,
+          success: (result,status,xhr) => {
+            console.log(result);
+            console.log(`${JSON.stringify(xhr)} ${status}`);
+          },
+          error: (xhr, status, error) => {
+            console.log('err');
+            console.log (`${JSON.stringify(xhr)} ${status}`);
+          }
+        });
+    });
+
+});
+
+
+</script>
 
 <style>
     body {
@@ -137,7 +177,7 @@
         font-family: 'Open Sans', sans-serif;
     }
 
-    input[type=text] {
+    input[type=text], input[type=password] {
         width: 250px;
         padding: 3px 3px;
         margin: 8px 0;

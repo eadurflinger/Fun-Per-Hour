@@ -1,7 +1,4 @@
 <?php
-
-header("content-type: text/xml");
-
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $server = $url["host"];
@@ -29,7 +26,7 @@ date_default_timezone_set('UTC');
 $date = date("h:i:s");
 $updatetime = date("h:i:s", time()+$TIME_BETWEEN_UPDATES);
 
-if($res=mysqli->query("SELECT * FROM `registration` WHERE `updatetime` < '". $time."'")) {
+if($res=$mysqli->query("SELECT * FROM `registration` WHERE `updatetime` < '". $time."'")) {
     while($row = $res->fetch_assoc()) {
         $client->messages->create(
            $row['attendeepno'] , [
