@@ -15,7 +15,7 @@ REGISTRATION
 CREATE TABLE `registration` (
   `attendeepno` varchar(15) NOT NULL,
   `EID` int(11) NOT NULL,
-  `updatetime` time(6) NOT NULL,
+  `submittime` time(6) NOT NULL,
   PRIMARY KEY (`attendeepno`,`EID`),
   KEY `EID_idx` (`EID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -26,14 +26,14 @@ CREATE TABLE `attendee` (
   `EID` int(11) DEFAULT NULL,
   `entreeId` int(11) NOT NULL DEFAULT '1',
   `attendeepno` varchar(15) NOT NULL,
-  `funlevel` int(11) DEFAULT NULL,
-  `submitTime` int(11) DEFAULT NULL,
+  `updateTime` int(11) DEFAULT NULL,
   PRIMARY KEY (`entreeId`),
   KEY `EID_idx` (`EID`),
   KEY `attendeeono_idx` (`attendeepno`),
   CONSTRAINT `EID` FOREIGN KEY (`EID`) REFERENCES `event` (`EID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `attendeepno` FOREIGN KEY (`attendeepno`) REFERENCES `registration` (`attendeepno`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
 
 EVENT
 
