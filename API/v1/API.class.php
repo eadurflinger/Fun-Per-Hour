@@ -11,9 +11,9 @@ abstract class API {
   protected $status = 200;
 
   public function __construct($request) {
-    header("Access-Control-Allow-Orgin: *"); //NO CHANGE
-    header("Access-Control-Allow-Methods: *");
-    header("Access-Control-Allow-Headers: *");
+//    header("Access-Control-Allow-Orgin: *"); //NO CHANGE
+//    header("Access-Control-Allow-Methods: *");
+//    header("Access-Control-Allow-Headers: *");
     header("Content-Type: application/json");
 
     $this->args = explode('/', trim($request,'/'));
@@ -55,7 +55,7 @@ abstract class API {
     if(method_exists($this, $this->pubfunc)) {
       return $this->_response($this->{$this->pubfunc}($this->params), $this->status);
     }
-    return $this->_reponse($this->pubfunc . " Not Found", 404);
+    return $this->_response($this->pubfunc . " Not Found", 404);
   }
 
   private function _response($out, $status = 200) {
