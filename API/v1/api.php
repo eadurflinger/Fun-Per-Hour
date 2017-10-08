@@ -13,11 +13,11 @@ class mAPI extends API {
     $this->mysqli = $mysqli;
     // TODO: validate API_key here
     if(!$this->input) throw new Exception("No Input!");
-    if(!array_key_exists('newRand', $this->input)) throw new Exception("No Rand");
-    if(!array_key_exists('token', $this->input)&&array_key_exists('newRand', $this->input)) {
+       if(!array_key_exists('token', $this->input)) {
       $this->user = new User();
       $this->token = new Token();
     } else if(array_key_exists('token', $this->input)&&array_key_exists('newRand', $this->input)&&array_key_exists('randKey', $this->input)){
+    } else if (array_key_exists ('token', $this->input)){
       $this->token = new Token($this->input['randKey'], $this->input['token']);
       $this->user = new User($this->token->uid);
     }
@@ -105,7 +105,7 @@ class mAPI extends API {
   }
   protected function login() {
     if($this->method != 'GET') {$this->status=404; return ['error'=>'Wrong Method'];}
-    //TODO: salt and hash passwordword
+
     $whereUser = Array();
     $whereUser['username'] = $this->data['where']['username'];
     $sql = $this->makeQuery('admin', null, $whereUser);
@@ -124,7 +124,7 @@ class mAPI extends API {
     if($this->method != 'POST') {$this->status=404; return 'Wrong Method'; die();}
     $sql = $this->makeQuery('admin', null , ['username'=>$this->data['set']['username']]);
     if($res = $this->_sendQuery($sql)) throw new Exception("User Already Exists");
-    // SALT & HASH GENERATOR
+
     $bytes = random_bytes('10');
     $salt = bin2hex($bytes);
     $this->data['set']['password'] .= $salt;

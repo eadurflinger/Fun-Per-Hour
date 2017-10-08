@@ -33,8 +33,9 @@ if(((int)$input)>0 && ((int)$input)<=10) {
     } else {
         $sql = "UPDATE `registration` SET updatetime=".$updatetime.", submittime=".$time." WHERE attendeepno==".$from; //FIXME: change names of columns
     }
-} else if()
-
+} else if(mysqli->query('select * from `events` where `EID`=='.$input)) {
+    mysqli->query('');
+} else $out = "Unknown EID";
 
 ?>
 
