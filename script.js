@@ -7,7 +7,6 @@ var dat = {
             'adminemail' : "EMAIL",
         }
     },
-    newRand: '0',
 };
 
 
@@ -19,7 +18,7 @@ $( document ).ready(function() {
         console.log('clicked');
         $.ajax({
           type: 'POST',
-          url: 'http://fun-per-hour.herokuapp.com/API/v1/index.php/newUser',
+          url: 'http://fun-per-hour.herokuapp.com/API/v1/newUser',
           contentType: 'application/json',
           dataType: 'json',
           data: JSON.stringify(dat),
