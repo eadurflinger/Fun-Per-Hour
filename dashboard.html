@@ -8,6 +8,7 @@
     <meta name="description" content="A layout example that shows off a responsive product landing page.">
     <title>Landing Page – Layout Examples – Pure</title>
     
+    <!--inserting external css style sheet-->
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
@@ -22,10 +23,62 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Syncopate:700" rel="stylesheet">
+
+    <!--links for bootstrap-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
-    <div>e</div>
+    <div class="container text-center">
+  <h1>Admin Dashboard</h1>
+  <p><b>Name of Admin: <b></p>
+      <p><button class="btn info" type="button" onclick=" ">Create a New Event</button>
+ </p>
+</div>
+
+<div class="jumbotron"">
+  <div class="row">
+    <div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Event name</th>
+        <th>No. of Attendies</th>
+        <th>No. of Ratings</th>
+        <th>Visual Data </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>event1</td>
+        <td>10</td>
+        <td>8</td>
+        <td><a href="">visualdata</a></td>
+      </tr>
+        <tr>
+        <td>event2</td>
+        <td>20</td>
+        <td>18</td>
+        <td><a href="">visualdata</a></td>
+      </tr>
+
+      <tr>
+        <td>event3</td>
+        <td>50</td>
+        <td>32</td>
+        <td><a href="">visualdata</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  </div>
+</div>
+
 </body>
 
 <style>
