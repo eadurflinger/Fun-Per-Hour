@@ -46,6 +46,9 @@ abstract class API {
               case "POST":
                   $this->input = $this->_sanitize($_POST);
                   break;
+              default:
+                  throw new Exception("Unsupported Content Type");
+                  break;
           }
       } else throw new Exception("Unexpected Content Type");
 
