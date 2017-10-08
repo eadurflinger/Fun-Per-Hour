@@ -13,6 +13,7 @@ abstract class API {
   public function __construct($request) {
     header("Access-Control-Allow-Orgin: *"); //NO CHANGE
     header("Access-Control-Allow-Methods: *");
+    header("Access-Control-Allow-Headers: *");
     header("Content-Type: application/json");
 
     $this->args = explode('/', trim($request,'/'));

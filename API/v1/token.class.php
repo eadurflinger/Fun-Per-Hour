@@ -3,7 +3,7 @@ class Token {
   const SERVER_KEY = '';
   protected $uid;
   private $TIME_ALLOTTED = 3600; //60 minutes before it expires
-  public function __construct($randKey=null, $token = null){
+  public function __construct($token = null){
     if($token) {
       $tokenArray = json_decode($this->_decrypt($token),true);
       if(!$this->_checkExp($tokenArray['exp'])) throw new Exception('Token Expired');
