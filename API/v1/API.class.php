@@ -55,7 +55,7 @@ abstract class API {
     if(method_exists($this, $this->pubfunc)) {
       return $this->_response($this->{$this->pubfunc}($this->params), $this->status);
     }
-    return $this->_reponse($this->pubfunc . " Not Found", 404);
+    return $this->_response($this->pubfunc . " Not Found", 404);
   }
 
   private function _response($out, $status = 200) {
