@@ -10,7 +10,7 @@ $client = new Client($sid, $token);
 $client->messages->create(
 '+13305037056', [
     'from' => '+17243085071',
-    'body' => '<<MESSAGE>>'
+    'body' => 'Yo Where you at? We goin to dinner'
 ]);
 
 
